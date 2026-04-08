@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Financial Intelligence | Modern Accounting Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-chart-line"></i> Aura<span>Financial</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="login.html" class="btn btn-primary" style="color: #0F1C2E; padding: 0.5rem 1rem;">Client Portal</a>
+                <button class="theme-toggle" id="theme-toggle" title="Toggle Light/Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+        <canvas id="canvas-bg"></canvas>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Smart Accounting & Financial Intelligence for Modern Businesses</h1>
+                <p>Empowering companies with professional accounting, tax planning, and AI-powered financial insights. Trust your business growth to data-driven precision.</p>
+                <div class="hero-btns">
+                    <a href="register.html" class="btn btn-primary">Start Financial Consultation</a>
+                    <a href="javascript:void(0)" class="btn btn-secondary" id="open-ai-chat">Talk to AI Financial Advisor</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section section" style="padding: 4rem 0;">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item glass-panel reveal-bounce d-1">
+                    <h3 class="counter" data-target="500">0</h3>
+                    <p>Businesses Served</p>
+                </div>
+                <div class="stat-item glass-panel reveal-bounce d-2">
+                    <h3 class="counter" data-target="15000">0</h3>
+                    <p>Tax Reports Completed</p>
+                </div>
+                <div class="stat-item glass-panel reveal-bounce d-3">
+                    <h3 class="counter" data-target="2400">0</h3>
+                    <p>Consultations</p>
+                </div>
+                <div class="stat-item glass-panel reveal-bounce d-4">
+                    <h3 class="counter" data-target="99">0</h3>
+                    <p>Client Satisfaction %</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header reveal-bounce">
+                <h2>Precision. Trust. Growth.</h2>
+                <p>Aura Financial is not just an accounting firm; we are a financial intelligence center. Our advisors combine decades of corporate expertise with the latest AI-driven data to secure your business's future.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section" style="background-color: var(--primary-light);">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Our Premium Services</h2>
+                <p>Comprehensive financial strategies tailored for scaling businesses and enterprises.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card glass-panel reveal-zoom d-1">
+                    <i class="fa-solid fa-book service-icon"></i>
+                    <h3>Accounting & Bookkeeping</h3>
+                    <p>Flawless ledger management, automated expense tracking, and real-time financial transparency.</p>
+                </div>
+                <div class="service-card glass-panel reveal-zoom d-2">
+                    <i class="fa-solid fa-file-invoice-dollar service-icon"></i>
+                    <h3>Tax Planning & Filing</h3>
+                    <p>Proactive tax strategies designed to legally minimize liabilities and ensure total compliance.</p>
+                </div>
+                <div class="service-card glass-panel reveal-zoom d-3">
+                    <i class="fa-solid fa-money-bill-transfer service-icon"></i>
+                    <h3>Payroll Management</h3>
+                    <p>Secure, timely, and automated payroll processing with tax withholdings and compliance reporting.</p>
+                </div>
+                <div class="service-card glass-panel reveal-zoom d-4">
+                    <i class="fa-solid fa-comments-dollar service-icon"></i>
+                    <h3>Financial Consulting</h3>
+                    <p>Expert advisory for scaling strategies, mergers, acquisitions, and cash flow optimization.</p>
+                </div>
+                <div class="service-card glass-panel reveal-zoom d-5">
+                    <i class="fa-solid fa-magnifying-glass-chart service-icon"></i>
+                    <h3>Business Financial Analysis</h3>
+                    <p>Deep data scraping to identify profit leaks, margin enhancements, and growth vectors.</p>
+                </div>
+                <div class="service-card glass-panel reveal-zoom d-6">
+                    <i class="fa-solid fa-shield-halved service-icon"></i>
+                    <h3>Audit & Compliance</h3>
+                    <p>Rigorous internal auditing ensuring your business meets all federal and corporate regulations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <i class="fa-solid fa-chart-line"></i> Aura<span>Financial</span>
+                    </div>
+                    <p style="margin-top: 1rem;">"Precision Accounting. Intelligent Financial Growth."</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Client Login</a></li>
+                        <li><a href="dashboard.html">Financial Dashboard</a></li>
+                        <li><a href="#">Security Options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Technologies Used</h4>
+                    <ul class="footer-links" style="color: var(--text-muted); font-size: 0.9rem;">
+                        <li><i class="fa-solid fa-cloud"></i> Cloud Accounting Systems</li>
+                        <li><i class="fa-solid fa-robot"></i> AI Financial Analysis</li>
+                        <li><i class="fa-solid fa-lock"></i> Secure Financial Databases</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Aura Financial Consulting. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chatbot -->
+    <div class="ai-chatbot">
+        <div class="chatbot-btn" id="chatbot-toggle">
+            <i class="fa-solid fa-robot"></i>
+        </div>
+        <div class="chatbot-window" id="chatbot-window">
+            <div class="chatbot-header">
+                <h4><i class="fa-solid fa-robot" style="color: var(--accent);"></i> Aura AI Advisor</h4>
+                <button class="close-chat" id="close-chat"><i class="fa-solid fa-times"></i></button>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="msg msg-ai">Hello. I am the Aura AI Financial Advisor. How can I assist you with your business finances today?</div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chat-input" placeholder="Ask about taxes, cash flow...">
+                <button id="send-chat"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

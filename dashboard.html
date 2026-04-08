@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Dashboard | Aura</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="light-mode">
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <i class="fa-solid fa-chart-line"></i> Aura<span>Financial</span>
+                </a>
+            </div>
+            
+            <div class="sidebar-menu">
+                <a href="#" class="menu-item active" data-tab="overview">
+                    <i class="fa-solid fa-border-all"></i> Overview
+                </a>
+                <a href="#" class="menu-item" data-tab="reports">
+                    <i class="fa-solid fa-chart-pie"></i> Reports
+                </a>
+                <a href="#" class="menu-item" data-tab="insights">
+                    <i class="fa-solid fa-lightbulb"></i> Insights
+                </a>
+                <a href="#" class="menu-item" data-tab="ai-advisor">
+                    <i class="fa-solid fa-robot"></i> AI Advisor
+                </a>
+            </div>
+            
+            <div class="sidebar-footer">
+                <a href="#" class="menu-item" id="logout-btn">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Topbar -->
+            <header class="topbar">
+                <div style="font-weight: 500;">Welcome back, User</div>
+                <div style="display: flex; gap: 1.5rem; align-items: center;">
+                    <button class="theme-toggle" id="theme-toggle" title="Toggle Light/Dark Mode">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: #0F1C2E; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer;">
+                        JD
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content Container -->
+            <div class="dashboard-content">
+                <!-- Overview Tab -->
+                <div id="tab-overview" class="tab-pane">
+                    <div class="dashboard-header">
+                        <h2>Financial Overview</h2>
+                        <button class="btn btn-primary"><i class="fa-solid fa-download"></i> Export Data</button>
+                    </div>
+                    
+                    <div class="dash-stats-grid">
+                        <div class="dash-stat-card">
+                            <i class="fa-solid fa-wallet dash-icon"></i>
+                            <div class="stat-title">Total Revenue</div>
+                            <div class="stat-value">$124,500</div>
+                            <div class="stat-trend trend-up"><i class="fa-solid fa-arrow-trend-up"></i> +12.5% from last month</div>
+                        </div>
+                        <div class="dash-stat-card">
+                            <i class="fa-solid fa-money-bill-wave dash-icon"></i>
+                            <div class="stat-title">Total Expenses</div>
+                            <div class="stat-value">$42,300</div>
+                            <div class="stat-trend trend-down"><i class="fa-solid fa-arrow-trend-down"></i> -4.2% from last month</div>
+                        </div>
+                        <div class="dash-stat-card">
+                            <i class="fa-solid fa-piggy-bank dash-icon"></i>
+                            <div class="stat-title">Net Profit</div>
+                            <div class="stat-value">$82,200</div>
+                            <div class="stat-trend trend-up"><i class="fa-solid fa-arrow-trend-up"></i> +8.1% from last month</div>
+                        </div>
+                        <div class="dash-stat-card">
+                            <i class="fa-solid fa-file-invoice-dollar dash-icon"></i>
+                            <div class="stat-title">Est. Tax Liability</div>
+                            <div class="stat-value">$18,450</div>
+                            <div class="stat-trend trend-up"><i class="fa-solid fa-arrow-trend-up"></i> +2.4% from last month</div>
+                        </div>
+                    </div>
+
+                    <div class="charts-grid">
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>Cash Flow Analysis</h3>
+                            </div>
+                            <div class="canvas-container">
+                                <canvas id="cashflowChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3>Expense Breakdown</h3>
+                            </div>
+                            <div class="canvas-container">
+                                <canvas id="expenseChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reports Tab (Hidden by default) -->
+                <div id="tab-reports" class="tab-pane" style="display: none;">
+                    <div class="dashboard-header">
+                        <h2>Financial Reports</h2>
+                    </div>
+                    <div class="glass-panel" style="padding: 2rem;">
+                        <h3 style="margin-bottom: 1.5rem;">Income Statement (YTD)</h3>
+                        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <th style="padding: 1rem 0;">Category</th>
+                                <th style="padding: 1rem 0;">Amount</th>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 1rem 0;">Gross Revenue</td>
+                                <td style="padding: 1rem 0;">$540,000</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 1rem 0;">Cost of Goods Sold</td>
+                                <td style="padding: 1rem 0; color: #ef4444;">-$120,000</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.05);">
+                                <td style="padding: 1rem 0; font-weight: bold;">Gross Profit</td>
+                                <td style="padding: 1rem 0; font-weight: bold;">$420,000</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 1rem 0;">Operating Expenses</td>
+                                <td style="padding: 1rem 0; color: #ef4444;">-$145,000</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- AI Advisor Tab (Hidden by default) -->
+                <div id="tab-ai-advisor" class="tab-pane" style="display: none; height: 100%;">
+                    <div class="dashboard-header">
+                        <h2>AI Financial Consulting</h2>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 3fr; gap: 2rem; height: calc(100vh - 220px);">
+                        <!-- Suggested Questions -->
+                        <div class="glass-panel" style="overflow-y: auto;">
+                            <h4 style="margin-bottom: 1rem;">Suggested Queries</h4>
+                            <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                                <button class="btn btn-secondary ai-suggest-btn" style="text-align: left; font-size: 0.9rem;">How can I reduce taxes legally?</button>
+                                <button class="btn btn-secondary ai-suggest-btn" style="text-align: left; font-size: 0.9rem;">What financial reports should my business track?</button>
+                                <button class="btn btn-secondary ai-suggest-btn" style="text-align: left; font-size: 0.9rem;">How can I increase profit margins?</button>
+                                <button class="btn btn-secondary ai-suggest-btn" style="text-align: left; font-size: 0.9rem;">How can I improve cash flow?</button>
+                            </div>
+                        </div>
+
+                        <!-- Chat Area -->
+                        <div class="glass-panel" style="display: flex; flex-direction: column; padding: 0; overflow: hidden;">
+                            <div class="chatbot-header" style="background: transparent;">
+                                <h4><i class="fa-solid fa-robot"></i> Expert Advisor</h4>
+                            </div>
+                            <div class="chatbot-messages" id="dash-chat-messages" style="flex: 1; height: auto;">
+                                <div class="msg msg-ai">Welcome to your personalized AI Financial Advisor. Based on your recent dashboard metrics, your cash flow is positive. How can I assist you with strategic planning today?</div>
+                            </div>
+                            <div class="chatbot-input">
+                                <input type="text" id="dash-chat-input" placeholder="Type your financial question...">
+                                <button id="dash-send-chat"><i class="fa-solid fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insights Tab -->
+                <div id="tab-insights" class="tab-pane" style="display: none;">
+                    <div class="dashboard-header">
+                        <h2>Business Intelligence Insights</h2>
+                    </div>
+                    <div class="services-grid">
+                        <div class="service-card glass-panel">
+                            <i class="fa-solid fa-arrow-trend-up service-icon" style="color: #22c55e;"></i>
+                            <h3>Profit Margin Optimization</h3>
+                            <p>According to Q3 data, shifting software subscriptions to annual plans could save $4,200 annually, increasing net margins by 1.2%.</p>
+                        </div>
+                        <div class="service-card glass-panel">
+                            <i class="fa-solid fa-triangle-exclamation service-icon" style="color: #eab308;"></i>
+                            <h3>Tax Deduction Alert</h3>
+                            <p>You have unconsolidated remote-work expenses. Consult with our tax professionals to claim an estimated $12,000 in additional write-offs.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Auth check
+        if(!localStorage.getItem('aura_auth')) {
+            window.location.href = 'login.html';
+        }
+
+        document.getElementById('logout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('aura_auth');
+            window.location.href = 'index.html';
+        });
+
+        // Tab Switching
+        const menuItems = document.querySelectorAll('.menu-item[data-tab]');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const tabId = item.getAttribute('data-tab');
+                
+                menuItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                tabPanes.forEach(pane => {
+                    pane.style.display = 'none';
+                    if(pane.id === `tab-${tabId}`) {
+                        pane.style.display = 'block';
+                    }
+                });
+            });
+        });
+
+        // Dashboard Charts
+        document.addEventListener('DOMContentLoaded', () => {
+            const getColors = () => {
+                const isLight = document.body.classList.contains('light-mode');
+                return {
+                    textColor: isLight ? '#4A5568' : '#A0AABF',
+                    gridColor: isLight ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)',
+                    accent: '#C9A227',
+                    primary: isLight ? '#0F1C2E' : '#FFFFFF'
+                };
+            };
+
+            let colors = getColors();
+
+            // Cashflow Chart
+            const ctxCash = document.getElementById('cashflowChart').getContext('2d');
+            const cashflowChart = new Chart(ctxCash, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Revenue',
+                        data: [65000, 72000, 85000, 81000, 96000, 124500],
+                        borderColor: colors.accent,
+                        backgroundColor: 'rgba(201, 162, 39, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }, {
+                        label: 'Expenses',
+                        data: [45000, 48000, 42000, 51000, 49000, 42300],
+                        borderColor: '#ef4444',
+                        backgroundColor: 'rgba(239, 68, 68, 0.05)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: colors.textColor } }
+                    },
+                    scales: {
+                        x: { grid: { color: colors.gridColor }, ticks: { color: colors.textColor } },
+                        y: { grid: { color: colors.gridColor }, ticks: { color: colors.textColor } }
+                    }
+                }
+            });
+
+            // Expense Breakdown Chart
+            const ctxExp = document.getElementById('expenseChart').getContext('2d');
+            const expenseChart = new Chart(ctxExp, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Payroll', 'Software', 'Marketing', 'Operations', 'Taxes'],
+                    datasets: [{
+                        data: [45, 15, 20, 10, 10],
+                        backgroundColor: [
+                            '#C9A227',
+                            '#0F1C2E',
+                            '#3b82f6',
+                            '#10b981',
+                            '#f59e0b'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: colors.textColor } }
+                    }
+                }
+            });
+
+            // Re-render chart colors on theme toggle
+            document.getElementById('theme-toggle').addEventListener('click', () => {
+                setTimeout(() => {
+                    colors = getColors();
+                    
+                    cashflowChart.options.scales.x.grid.color = colors.gridColor;
+                    cashflowChart.options.scales.y.grid.color = colors.gridColor;
+                    cashflowChart.options.scales.x.ticks.color = colors.textColor;
+                    cashflowChart.options.scales.y.ticks.color = colors.textColor;
+                    cashflowChart.options.plugins.legend.labels.color = colors.textColor;
+                    
+                    if(document.body.classList.contains('light-mode')) {
+                        expenseChart.data.datasets[0].backgroundColor[1] = '#0F1C2E';
+                    } else {
+                        expenseChart.data.datasets[0].backgroundColor[1] = '#FFFFFF';
+                    }
+
+                    expenseChart.options.plugins.legend.labels.color = colors.textColor;
+
+                    cashflowChart.update();
+                    expenseChart.update();
+                }, 50);
+            });
+        });
+
+        // AI Advisor Dashboard Chat Script
+        const dashChatMsgs = document.getElementById('dash-chat-messages');
+        const dashChatInput = document.getElementById('dash-chat-input');
+        const dashSendBtn = document.getElementById('dash-send-chat');
+
+        function appendDashMsg(text, type) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `msg msg-${type}`;
+            msgDiv.textContent = text;
+            dashChatMsgs.appendChild(msgDiv);
+            dashChatMsgs.scrollTop = dashChatMsgs.scrollHeight;
+        }
+
+        dashSendBtn.addEventListener('click', () => {
+            const text = dashChatInput.value.trim();
+            if(text) {
+                appendDashMsg(text, 'user');
+                dashChatInput.value = '';
+                setTimeout(() => {
+                    const aiResponses = [
+                        "Based on corporate tax code 179, you may qualify for specific deductions.",
+                        "Looking at your P&L, focusing on operational efficiency in software could free up cash.",
+                        "That's an excellent question. I recommend viewing the Insights tab for specialized breakdowns.",
+                        "To legally reduce taxes, consider increasing your contributions to retirement accounts or deferring income."
+                    ];
+                    const reply = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+                    appendDashMsg(reply, 'ai');
+                }, 1000);
+            }
+        });
+
+        dashChatInput.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') dashSendBtn.click();
+        });
+
+        // Suggestion buttons
+        document.querySelectorAll('.ai-suggest-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                dashChatInput.value = btn.textContent;
+                dashSendBtn.click();
+            });
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Aura Financial</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+    <nav class="navbar" style="background: transparent; border: none; backdrop-filter: none;">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-chart-line"></i> Aura<span>Financial</span>
+            </a>
+            <button class="theme-toggle" id="theme-toggle" title="Toggle Light/Dark Mode">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="auth-wrapper" style="padding-top: 6rem; padding-bottom: 2rem;">
+        <div class="auth-form glass-panel">
+            <div class="auth-header">
+                <h2>Corporate Registration</h2>
+                <p>Onboard your business to our intelligence platform.</p>
+            </div>
+            
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="John Doe" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="company">Company Name (Optional)</label>
+                    <input type="text" id="company" class="form-control" placeholder="Acme Corp">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="corporate@business.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+                    <div style="height: 4px; width: 100%; background: var(--border); border-radius: 2px; margin-top: 0.5rem; overflow: hidden;">
+                        <div id="pwd-strength" style="height: 100%; width: 0%; transition: width 0.3s ease, background 0.3s ease;"></div>
+                    </div>
+                    <small id="pwd-text" style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.2rem; display: block;">Password Strength</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" class="form-control" placeholder="••••••••" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary auth-btn">Create Secure Account</button>
+            </form>
+            
+            <div class="auth-footer">
+                Already have an account? <a href="login.html">Log in here</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const pwdInput = document.getElementById('password');
+        const pwdStrength = document.getElementById('pwd-strength');
+        const pwdText = document.getElementById('pwd-text');
+
+        pwdInput.addEventListener('input', function() {
+            const val = this.value;
+            let strength = 0;
+            if(val.length > 5) strength += 33;
+            if(val.length > 8 && /[A-Z]/.test(val)) strength += 33;
+            if(/[0-9]/.test(val) && /[^A-Za-z0-9]/.test(val)) strength += 34;
+
+            pwdStrength.style.width = strength + '%';
+            if(strength <= 33) {
+                pwdStrength.style.background = '#ef4444';
+                pwdText.textContent = 'Weak';
+            } else if(strength <= 66) {
+                pwdStrength.style.background = '#eab308';
+                pwdText.textContent = 'Moderate';
+            } else {
+                pwdStrength.style.background = '#22c55e';
+                pwdText.textContent = 'Strong';
+            }
+        });
+
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.querySelector('.auth-btn');
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Securing Data...';
+            setTimeout(() => {
+                localStorage.setItem('aura_auth', 'true');
+                window.location.href = 'dashboard.html';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

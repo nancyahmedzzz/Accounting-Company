@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Aura Financial</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-mode">
+    <nav class="navbar" style="background: transparent; border: none; backdrop-filter: none;">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-chart-line"></i> Aura<span>Financial</span>
+            </a>
+            <button class="theme-toggle" id="theme-toggle" title="Toggle Light/Dark Mode">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="auth-wrapper">
+        <div class="auth-form glass-panel">
+            <div class="auth-header">
+                <h2>Welcome Back</h2>
+                <p>Log in to your financial intelligence dashboard.</p>
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="corporate@business.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+                </div>
+                
+                <div class="auth-options">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                        <input type="checkbox" id="remember">
+                        Remember Me
+                    </label>
+                    <a href="#">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary auth-btn">Secure Login <i class="fa-solid fa-arrow-right" style="margin-left: 0.5rem;"></i></button>
+            </form>
+            
+            <div class="auth-footer">
+                Don't have an account? <a href="register.html">Consult with us to register</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Simulate secure login
+            const btn = document.querySelector('.auth-btn');
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Authenticating...';
+            setTimeout(() => {
+                localStorage.setItem('aura_auth', 'true');
+                window.location.href = 'dashboard.html';
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
