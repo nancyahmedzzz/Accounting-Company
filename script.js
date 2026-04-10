@@ -117,15 +117,16 @@ if(canvas) {
     let particles = [];
     let mouse = { x: null, y: null };
 
-    canvas.addEventListener('mousemove', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
     });
 
-    canvas.addEventListener('mouseleave', () => {
-        mouse.x = null;
-        mouse.y = null;
+    window.addEventListener('mouseout', (e) => {
+        if(e.relatedTarget === null) {
+            mouse.x = null;
+            mouse.y = null;
+        }
     });
     
     const initCanvas = () => {
