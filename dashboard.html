@@ -9,6 +9,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="light-mode">
+    <!-- Background Animation -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+    <canvas id="canvas-bg"></canvas>
+
     <div class="dashboard-layout">
         <!-- Sidebar -->
         <aside class="sidebar">
@@ -44,12 +50,12 @@
         <main class="main-content">
             <!-- Topbar -->
             <header class="topbar">
-                <div style="font-weight: 500;">Welcome back, User</div>
+                <div style="font-weight: 500;">Welcome back, <span id="dash-username">User</span></div>
                 <div style="display: flex; gap: 1.5rem; align-items: center;">
                     <button class="theme-toggle" id="theme-toggle" title="Toggle Light/Dark Mode">
                         <i class="fa-solid fa-moon"></i>
                     </button>
-                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: #0F1C2E; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer;">
+                    <div id="dash-user-initial" style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: #0F1C2E; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer;">
                         JD
                     </div>
                 </div>
@@ -61,7 +67,7 @@
                 <div id="tab-overview" class="tab-pane">
                     <div class="dashboard-header">
                         <h2>Financial Overview</h2>
-                        <button class="btn btn-primary"><i class="fa-solid fa-download"></i> Export Data</button>
+                        <button class="btn btn-primary" id="export-btn"><i class="fa-solid fa-download"></i> Export Data</button>
                     </div>
                     
                     <div class="dash-stats-grid">
@@ -149,7 +155,7 @@
                         <h2>AI Financial Consulting</h2>
                     </div>
                     
-                    <div style="display: grid; grid-template-columns: 1fr 3fr; gap: 2rem; height: calc(100vh - 220px);">
+                    <div class="ai-advisor-grid">
                         <!-- Suggested Questions -->
                         <div class="glass-panel" style="overflow-y: auto;">
                             <h4 style="margin-bottom: 1rem;">Suggested Queries</h4>
@@ -206,12 +212,45 @@
         if(!localStorage.getItem('aura_auth')) {
             window.location.href = 'login.html';
         }
+        
+        // Load User info
+        const savedName = localStorage.getItem('aura_user_name') || 'User';
+        document.getElementById('dash-username').textContent = savedName;
+        document.getElementById('dash-user-initial').textContent = savedName.substring(0, 2).toUpperCase();
 
         document.getElementById('logout-btn').addEventListener('click', function(e) {
             e.preventDefault();
             localStorage.removeItem('aura_auth');
             window.location.href = 'index.html';
         });
+
+        // Export Data Functionality
+        const exportBtn = document.getElementById('export-btn');
+        if (exportBtn) {
+            exportBtn.addEventListener('click', () => {
+                const originalContent = exportBtn.innerHTML;
+                exportBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Exporting...';
+                
+                setTimeout(() => {
+                    const csvContent = "data:text/csv;charset=utf-8," 
+                        + "Metric,Value,Trend\n"
+                        + "Total Revenue,$124500,+12.5%\n"
+                        + "Total Expenses,$42300,-4.2%\n"
+                        + "Net Profit,$82200,+8.1%\n"
+                        + "Est. Tax Liability,$18450,+2.4%\n";
+                    
+                    const encodedUri = encodeURI(csvContent);
+                    const link = document.createElement("a");
+                    link.setAttribute("href", encodedUri);
+                    link.setAttribute("download", "Aura_Financial_Report.csv");
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    exportBtn.innerHTML = originalContent;
+                }, 800);
+            });
+        }
 
         // Tab Switching
         const menuItems = document.querySelectorAll('.menu-item[data-tab]');

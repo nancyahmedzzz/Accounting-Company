@@ -621,7 +621,7 @@ a {
 
 .topbar {
   height: 80px;
-  background: var(--bg-main);
+  background: transparent;
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -633,7 +633,7 @@ a {
   flex: 1;
   overflow-y: auto;
   padding: 2rem;
-  background: var(--bg-main);
+  background: transparent;
 }
 
 .dashboard-header {
@@ -717,6 +717,14 @@ a {
 .canvas-container {
   height: 300px;
   width: 100%;
+}
+
+/* AI Advisor Grid */
+.ai-advisor-grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 2rem;
+  height: calc(100vh - 220px);
 }
 
 /* Animations */
@@ -848,7 +856,9 @@ a {
   position: absolute;
   bottom: 80px;
   right: 0;
-  width: 350px;
+  width: calc(100vw - 4rem);
+  max-width: 350px;
+  max-height: calc(100vh - 200px);
   background: var(--primary-light);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -906,6 +916,7 @@ a {
 
 .chatbot-messages {
   height: 300px;
+  flex: 1 1 auto;
   padding: 1rem;
   overflow-y: auto;
   display: flex;
@@ -1043,11 +1054,17 @@ a {
 
 @media (max-width: 768px) {
   .hero h1 { font-size: 2.5rem; }
+  .hero-btns { flex-direction: column; width: 100%; }
+  .hero-btns .btn { width: 100%; text-align: center; }
   .nav-links { display: none; }
   .footer-grid { grid-template-columns: 1fr; }
   .dashboard-layout { flex-direction: column; }
   .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
   .sidebar-header { display: none; }
   .sidebar-menu { display: flex; flex-direction: row; overflow-x: auto; padding: 1rem; }
-  .menu-item { padding: 0.5rem 1rem; }
+  .menu-item { padding: 0.5rem 1rem; white-space: nowrap; }
+  .ai-advisor-grid { grid-template-columns: 1fr; height: auto; }
+  .ai-advisor-grid > .glass-panel { max-height: 400px; }
+  .dashboard-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .topbar { height: auto; padding: 1rem; flex-wrap: wrap; gap: 1rem; }
 }

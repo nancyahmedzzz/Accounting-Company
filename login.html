@@ -64,6 +64,12 @@
     <script>
         document.getElementById('login-form').addEventListener('submit', function(e) {
             e.preventDefault();
+            // Get email and extract name
+            const emailVal = document.getElementById('email').value;
+            const namePart = emailVal.split('@')[0];
+            const userName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
+            localStorage.setItem('aura_user_name', userName);
+
             // Simulate secure login
             const btn = document.querySelector('.auth-btn');
             btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Authenticating...';
